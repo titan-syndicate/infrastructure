@@ -1,0 +1,56 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-echo-server
+spec:
+  selector:
+    matchLabels:
+      app: echo-server
+  template:
+    metadata:
+      labels:
+        app: echo-server
+    spec:
+      containers:
+      - name: echo
+        image: hashicorp/http-echo
+        args: ["-text", 'HELLO MATE']
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5678
+
+# resource "kubernetes_deployment" "echo-server" {
+#   metadata {
+#     name = "my-echo-server"
+#   }
+
+#   spec {
+#     replicas = var.replica_count
+
+#     selector {
+#       match_labels = local.echo_labels
+#     }
+
+#     template {
+#       metadata {
+#         labels = local.echo_labels
+#       }
+
+#       spec {
+#         container {
+#           image = "hashicorp/http-echo"
+#           name  = "echo"
+#           args  = ["-text", var.echo_message]
+
+#           port {
+#             container_port = 5678
+#           }
+#         }
+#       }
+#     }
+#   }
+# }
