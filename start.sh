@@ -18,6 +18,6 @@ CLUSTER_ID=$(linode-cli lke clusters-list --json | jq -r '.[0].id')
 linode-cli --json lke kubeconfig-view $CLUSTER_ID | jq -r '.[].kubeconfig | @base64d' > ~/.kube/lke_config
 #
 # kubectl apply -f ./
-kubectl apply -k ./
+# kubectl apply -k ./
 # kubectl apply -f argocd-namespace.yaml
 # kubectl apply -f argocd-crd.yaml
