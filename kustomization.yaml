@@ -1,9 +1,15 @@
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 resources:
-  - nginx-crd.yaml
-  - argocd-crd.yaml
-  - argocd-ingress.yaml
+  # - nginx-crd.yaml
+  - hello-two.yaml
+  - hello-one.yaml
+  - my-new-ingress.yaml
+  # - acme-issuer-prod.yaml
+  # - cert-manager.yml
+  # - argocd-crd.yaml
+  # - argocd-ingress.yaml
+  # - echo.yaml
 
 
   # - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml

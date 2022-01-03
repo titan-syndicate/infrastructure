@@ -39,13 +39,17 @@ metadata:
   name: echoserver
   namespace: default
 spec:
-  ingressClassName: nginx
+  # tls:
+  # - hosts:
+  #   - echo.burritops.com
+    # secretName: example-tls
+  # ingressClassName: nginx
   rules:
-  - host: www.burritops.com
-    http:
+  # - host: echo.burritops.com
+  - http:
       paths:
       - path: /echo
-        pathType: Exact
+        pathType: Prefix
         backend:
           service:
             name: echoserver
