@@ -42,6 +42,9 @@ brew "asdf"
 # kubectx
 brew "kubectx"
 
+# kubecolor
+brew "hidetatz/tap/kubecolor"
+
 EOF
 
 # Run brew bundle
@@ -50,11 +53,13 @@ brew bundle
 
 # install k3s without Traefik
 # https://www.suse.com/support/kb/doc/?id=000020082
+# https://rancher.com/docs/k3s/latest/en/installation/install-options/server-config/#customized-flags
+# https://rancher.com/docs/k3s/latest/en/installation/install-options/server-config/#customized-flags
 echo "Installing and starting k3s"
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy traefik" sh -s -
 
 ./k3s.sh --no-deploy traefik \
---kube-apiserver-arg="oidc-issuer-url=https://k8sou.192-168-1-148.nip.io/auth/idp/k8sIdp" \
+--kube-apiserver-arg="oidc-issuer-url=https://k8sou.192-168-1-17.nip.io/auth/idp/k8sIdp" \
 --kube-apiserver-arg="oidc-client-id=kubernetes" \
 --kube-apiserver-arg="oidc-username-claim=sub" \
 --kube-apiserver-arg="oidc-groups-claim=groups" \

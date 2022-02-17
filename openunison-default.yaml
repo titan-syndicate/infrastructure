@@ -2,9 +2,9 @@ network:
   # openunison_host: "k8sou.apps.ou.tremolo.dev"
   # dashboard_host: "k8sdb.apps.ou.tremolo.dev"
   # api_server_host: "k8sapi.apps.ou.tremolo.dev"
-  openunison_host: "k8sou.192-168-1-148.nip.io"
-  dashboard_host: "k8sdb.192-168-1-148.nip.io"
-  api_server_host: "k8sapi.192-168-1-148.nip.io"
+  openunison_host: "k8sou.192-168-1-17.nip.io"
+  dashboard_host: "k8sdb.192-168-1-17.nip.io"
+  api_server_host: "k8sapi.192-168-1-17.nip.io"
   session_inactivity_timeout_seconds: 900
   k8s_url: https://127.0.0.1:8443
   force_redirect_to_tls: false
