@@ -159,7 +159,7 @@ monitoring:
   prometheus_service_account: system:serviceaccount:monitoring:prometheus-k8s
 
 github:
- client_id: GITHUB_OAUTH_CLIENT_ID
+ client_id: $GITHUB_OAUTH_CLIENT_ID
  teams: titan-syndicate/red-team
 
 #saml:
@@ -242,5 +242,5 @@ helm upgrade --install orchestra-login-portal tremolo/orchestra-login-portal \
 --wait \
 -f <(echo "$openunisonValues")
 
-echo "All done! \n \
-Visit http://k8sou.$lbip.nip.io"
+echo "All done!"
+echo "Visit http://k8sou.$lbip.nip.io"

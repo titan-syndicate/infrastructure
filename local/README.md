@@ -2,6 +2,8 @@
 - don't use the 01-install-tools.sh yet
 - don't use with existing k3s installation- run k3s-uninstall.sh first
 - tools needed: helm
+- you'll be asked for sudo a couple of times. don't walk away the last one will time out
+- each helm install are set to wait so be patient
 - example:
 ```
 ./02-install-k3s.sh \
@@ -15,3 +17,4 @@
 ```
 echo -n MY_PASSWORD | base64
 ```
+- dashboard works but tokens don't yet
