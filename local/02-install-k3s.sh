@@ -238,3 +238,6 @@ helm upgrade --install orchestra-login-portal tremolo/orchestra-login-portal \
 
 echo "All done!"
 echo "Visit http://k8sou.$lbip.nip.io"
+echo "-----"
+echo "If you're using the oulogin plugin, then run:"
+echo "kubectl oulogin --host=k8sou.$lbip.nip.io"
