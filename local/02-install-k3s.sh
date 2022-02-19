@@ -74,7 +74,6 @@ helm upgrade --install openunison tremolo/openunison-operator \
 --namespace openunison \
 --create-namespace \
 --wait
-# while [[ $(kubectl get pods -l app=openunison-operator -n openunison -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo "waiting for operator pod" && sleep 1; done
 
 echo "Deploying openunison secret"
 # kubectl apply -f ./openunison_secret.yaml
@@ -118,7 +117,7 @@ network:
   dashboard_host: "k8sdb.$lbip.nip.io"
   api_server_host: "k8sapi.$lbip.nip.io"
   session_inactivity_timeout_seconds: 900
-  k8s_url: https://127.0.0.1:8443
+  k8s_url: https://127.0.0.1:6443
   force_redirect_to_tls: false
   createIngressCertificate: true
   ingress_type: nginx
@@ -162,10 +161,6 @@ github:
  client_id: $GITHUB_OAUTH_CLIENT_ID
  teams: titan-syndicate/red-team
 
-#saml:
-#  idp_url: "https://portal.apps.tremolo.io/idp-test/metadata/dfbe4040-cd32-470e-a9b6-809c8f857c40"
-
-
 network_policies:
   enabled: false
   ingress:
@@ -206,7 +201,6 @@ helm upgrade --install orchestra tremolo/orchestra \
 --namespace openunison \
 --wait \
 -f <(echo "$openunisonValues")
-while [[ $(kubectl get pods -l app=openunison-orchestra -n openunison -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo "waiting for orchestra pod" && sleep 1; done
 
 echo "Configuring and restarting kube-apiserver"
 # configuration file: https://rancher.com/docs/k3s/latest/en/installation/install-options/#configuration-file
