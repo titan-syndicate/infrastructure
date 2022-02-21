@@ -1,0 +1,65 @@
+apiVersion: v1
+data:
+  teleport.yaml: |
+    teleport:
+      log:
+        severity: DEBUG
+        output: stderr
+        format:
+          output: text
+          extra_fields: ["timestamp","level","component","caller"]
+    auth_service:
+      enabled: true
+      cluster_name: teleport.burritops.com
+      authentication:
+        type: local
+    kubernetes_service:
+      enabled: true
+      listen_addr: 0.0.0.0:3027
+      kube_cluster_name: teleport.burritops.com
+    proxy_service:
+      public_addr: 'teleport.burritops.com:443'
+      kube_listen_addr: 0.0.0.0:3026
+      mysql_listen_addr: 0.0.0.0:3036
+      enabled: true
+      acme:
+        enabled: true
+        email: rianf@me.com
+    ssh_service:
+      enabled: false
+    app_service:
+      enabled: yes
+      # Teleport provides a small debug app that can be used to make sure application
+      # access is working correctly. It'll output JWTs so it can be useful
+      # when extending your application.
+      debug_app: true
+      # This section contains definitions of all applications proxied by this
+      # service. It can contain multiple items.
+      apps:
+        # Name of the application. Used for identification purposes.
+      - name: "dashboard"
+        insecure_skip_verify: true
+        # URI and port the application is available at.
+        uri: "https://kubernetes-dashboard.kubernetes-dashboard.svc.cluster.local:443"
+        # Optional application public address to override.
+        # public_addr: "dashboard.teleport.example.com"
+        # Optional static labels to assign to the app. Used in RBAC.
+        # labels:
+        #  env: "prod"
+        # Optional dynamic labels to assign to the app. Used in RBAC.
+        # commands:
+        # - name: "os"
+        #   command: ["/usr/bin/uname"]
+        #   period: "5s"
+      - name: "argocd"
+        insecure_skip_verify: true
+        uri: "http://argocd-server.argocd.svc.cluster.local:80"
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: teleport-cluster
+    meta.helm.sh/release-namespace: teleport-cluster
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: teleport-cluster
+  namespace: teleport-cluster

@@ -1,0 +1,7 @@
+kind: role
+version: v4
+metadata:
+  name: member
+spec:
+  allow:
+    kubernetes_groups: ["system:masters"]
