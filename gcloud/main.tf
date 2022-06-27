@@ -1,3 +1,4 @@
+## configuration for tf cloud
 terraform {
   cloud {
     organization = "titan-syndicate"

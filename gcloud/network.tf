@@ -3,8 +3,8 @@ resource "google_compute_network" "vpc_network" {
   auto_create_subnetworks = "true"
 }
 
-
-resource "google_compute_firewall" "ss-server" {
+# not using the default gcp network here
+resource "google_compute_firewall" "ssh-server" {
   name    = "vpc-network-allow-ssh"
   network = google_compute_network.vpc_network.self_link
 

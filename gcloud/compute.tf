@@ -16,6 +16,7 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
 
+# cloud init stuff
   metadata = {
     user-data = "${data.cloudinit_config.conf.rendered}"
   }
