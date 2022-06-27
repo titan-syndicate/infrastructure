@@ -1,0 +1,12 @@
+# cloud config
+users:
+  - name: rian
+    primary_group: admins
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, admin
+    ssh_import_id:
+      - gh:rianfowler
+    lock_passwd: false
+
+write_files:
+  - path: /root/CLOUD_INIT_WAS_HERE
