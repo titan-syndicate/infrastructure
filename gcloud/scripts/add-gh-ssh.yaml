@@ -1,4 +1,6 @@
 # cloud config
+runcmd:
+  - /usr/bin/install_cluster.sh
 users:
   - name: rian
     primary_group: admins
@@ -9,4 +11,7 @@ users:
     lock_passwd: false
 
 write_files:
-  - path: /root/CLOUD_INIT_WAS_HERE
+  - path: /usr/bin/install_cluster.sh
+    content: |
+      #!/bin/sh
+      curl https://kurl.sh/latest | sudo bash
