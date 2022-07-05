@@ -40,6 +40,11 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
 
+  provisioner "local-exec" {
+    command = "echo ${self.network_interface.0.access_config.0.nat_ip} >> private_ips.txt"
+   #  && ssh rian@${self.network_interface.0.access_config.0.nat_ip}"
+  }
+
   # cloud init stuff
   metadata = {
     user-data = "${data.cloudinit_config.conf.rendered}"
