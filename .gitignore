@@ -33,3 +33,6 @@ override.tf.json
 # env files
 *.env
 **/ssl/*
+
+# OTHER
+.DS_STORE
